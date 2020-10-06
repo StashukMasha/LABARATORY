@@ -2,7 +2,7 @@
 #include <malloc.h>
 
 int inputArray(int *arr,int sizeArray);
-void sortingPuziric(int* arr, int sizeArray);
+void sortBubble(int* arr, int sizeArray);
 void outputArray(int* arr, int sizeArray);
 
 
@@ -18,7 +18,7 @@ int main()
 	
 	inputArray(arr, sizeArray);
 
-	sortingPuziric(arr, sizeArray);
+	sortBubble(arr, sizeArray);
 
 	outputArray(arr, sizeArray);
 
@@ -39,7 +39,7 @@ int inputArray(int* arr, int sizeArray)
 	return *arr;
 }
 
-void sortingPuziric(int* arr, int sizeArray)
+void sortBubble(int* arr, int sizeArray)
 {
 	
 	int i, j;
