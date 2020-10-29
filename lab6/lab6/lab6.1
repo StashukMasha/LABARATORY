@@ -1,0 +1,101 @@
+#include <stdio.h>
+#include <malloc.h>
+
+int** allocate(int row, int col);
+void inputMatrix(int** matrix, int row, int col);
+void outputOriginalMatrix(int** matrix, int row, int col);
+void transportationMatrix(int** matrix, int row, int col);
+void outputMatrix(int** matrix, int row, int col);
+
+int main()
+{
+    int** matrix, row, col, i, j;
+
+    printf("row & column = ");
+    scanf_s("%d%d", &row, &col);
+
+    matrix = allocate(row, col);
+
+    inputMatrix(matrix, row, col);
+
+    outputOriginalMatrix(matrix, row, col);
+
+    transportationMatrix(matrix, row, col);
+
+    outputMatrix(matrix, row, col);
+
+    return 0;
+}
+
+int** allocate(int row, int col)
+{
+    int** matrix = (int**)malloc(row * sizeof(int*));
+    for (int i = 0; i < row; i++)
+    {
+        matrix[i] = (int*)malloc(col * sizeof(int));
+    }
+    return matrix;
+}
+
+void inputMatrix(int** matrix, int row, int col)
+{
+    for (int i = 0; i < row; i++)
+        for (int j = 0; j < col; j++)
+        {
+            printf("[%d][%d]= ", i, j);
+            scanf_s("%d", &matrix[i][j]);
+        }
+}
+
+void outputOriginalMatrix(int** matrix, int row, int col)
+{
+    printf("original matrix:\n");
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+            printf("%d\t", matrix[i][j]);
+        printf("\n");
+    }
+}
+
+void transportationMatrix(int** matrix, int row, int col)
+{
+    printf("transported matrix relatively inderect diagonal:\n");
+
+    int sumInderect = row - 1;
+    int  k, i, j;
+
+    if (row > col)
+    {
+        k = row - col;
+    }
+
+    else
+    {
+        k = 0;
+    }
+
+    for (i = row - 2; i >= k; i--)
+    {
+        for (j = 0; j < row - i - 1; j++)
+        {
+
+            int tmp = matrix[i][j];
+            matrix[i][j] = matrix[sumInderect - j][sumInderect - i];
+            matrix[sumInderect - j][sumInderect - i] = tmp;
+        }
+    }
+}
+
+void outputMatrix(int** matrix, int row, int col)
+{
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            printf("%d\t", matrix[i][j]);
+        }
+
+        printf("\n");
+    }
+}

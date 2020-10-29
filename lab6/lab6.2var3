@@ -1,0 +1,103 @@
+#include <stdio.h>
+#include <malloc.h>
+#include<math.h>
+
+int** allocate(int row, int col);
+void inputMatrix(int** matrix, int row, int col);
+void outputOriginalMatrix(int** matrix, int row, int col);
+int lookingDifferenceSumUnderAndSumOverDiagonals(int** matrix, int row, int col);
+void changeCentralElement(int diference, int** matrix, int row, int col);
+void outputMatrix(int** matrix, int row, int col);
+
+int main()
+{
+    int** matrix, row, col, i, j;
+
+    printf("row & column = ");
+    scanf_s("%d%d", &row, &col);
+
+    matrix = allocate(row, col);
+
+    inputMatrix(matrix, row, col);
+
+    outputOriginalMatrix(matrix, row, col);
+
+    int diference = lookingDifferenceSumUnderAndSumOverDiagonals(matrix, row, col);
+
+    changeCentralElement(diference, matrix, row, col);
+
+    outputMatrix(matrix, row, col);
+
+    return 0;
+}
+
+int** allocate(int row, int col)
+{
+    int** matrix = (int**)malloc(row * sizeof(int*));
+    for (int i = 0; i < row; i++)
+    {
+        matrix[i] = (int*)malloc(col * sizeof(int));
+    }
+    return matrix;
+}
+
+void inputMatrix(int** matrix, int row, int col)
+{
+    for (int i = 0; i < row; i++)
+        for (int j = 0; j < col; j++)
+        {
+            printf("[%d][%d]= ", i, j);
+            scanf_s("%d", &matrix[i][j]);
+        }
+}
+
+void outputOriginalMatrix(int** matrix, int row, int col)
+{
+    printf("original matrix:\n");
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+            printf("%d\t", matrix[i][j]);
+        printf("\n");
+    }
+}
+
+int lookingDifferenceSumUnderAndSumOverDiagonals(int** matrix, int row, int col)
+{
+    int i, j;
+    int sumUnder = 0, sumOver = 0;
+    for (i = 0; i < row; i++)
+    {
+        for (j = 0; j < col; j++)
+        {
+            if (i + j > row - 1 && i != j && i > j)
+            {
+                sumUnder += matrix[i][j];
+            }
+            else if (i + j < row - 1 && i != j && i < j)
+            {
+                sumOver += matrix[i][j];
+            }
+        }
+    }
+   
+    return  abs(sumUnder - sumOver);
+}
+
+void changeCentralElement(int diference, int** matrix, int row, int col)
+{
+    matrix[(row - 1) / 2][(col - 1) / 2] = diference;
+}
+
+void outputMatrix(int** matrix, int row, int col)
+{
+    printf("the final matrix:\n");
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+
+            printf("%d\t", matrix[i][j]);
+
+        printf("\n");
+    }
+}
