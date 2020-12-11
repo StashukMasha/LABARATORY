@@ -112,7 +112,7 @@ void surchMinGrades(struct Group* a, int students, int grades)
 
 }
 
-void freestudents(Group** student, int count)
+void freeMemory(Group** student, int count)
 {
     for (int i = 0; i < count; i++)
     {
