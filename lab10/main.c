@@ -22,7 +22,7 @@ int main()
     showResult2(Student, quantitiStudents, quantitiGrades);
     removalOfPoorStudents(Student, &quantitiStudents, quantitiGrades);
     showResult2(Student, quantitiStudents, quantitiGrades);
-    freestudents(&Student, quantitiStudents);
+    freeMemory(&Student, quantitiStudents);
 
     return 0;
 }
