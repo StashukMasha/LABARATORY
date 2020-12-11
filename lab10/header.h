@@ -19,4 +19,4 @@ void culkulateAverage(struct Group* a, int students, int grades);
 void showResult2(struct Group* a, int students, int grades);
 void removalOfPoorStudents(struct Group* a, int* pstudents, int grades);
 void surchMinGrades(struct Group* a, int students, int grades);
-void freestudents(Group** student, int count);
+void freeMemory(Group** student, int count);
