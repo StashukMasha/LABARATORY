@@ -1,0 +1,8 @@
+1 There are wild and domestic animals.
+2 Wild animals live in the forest or in the zoo. 
+3 Some animals are dangerous. A fox, a wolf, a bear,
+4 a hare, a tiger, an elephant are wild animals. Domestic 
+5 animals live at home or at the farm.
+6 They are dogs, cats, rabbits, 
+7 cows, horses, parrots. Animals that we have at home are 
+8 called pets.
